@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "me.andreasmelone.podium.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"PostLaunchChecksMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "podium",
+	"version": "${version}",
+	"name": "Podium",
+	"description": "Patches Sodium to disable the check for PojavLauncher!",
+	"authors": [
+		"AndreasMelone"
+	],
+	"contact": {
+		"sources": "https://github.com/RaydanOMGr/Podium"
+	},
+	"license": "MIT",
+	"icon": "assets/podium/icon.png",
+	"environment": "client",
+	"mixins": [
+		"podium.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15",
+		"minecraft": "~1.21",
+		"java": ">=21",
+    "sodium": ">=0.6.13"
+	}
+}
