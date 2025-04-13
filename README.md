@@ -11,10 +11,10 @@ This doesn’t magically make [Sodium](https://github.com/CaffeineMC/sodium-fabr
 
 
 ## Requirements
-- **Minecraft:** 1.21.x  
-- **Loader:** [Fabric](https://fabricmc.net/use/) (0.15 or newer)  
-- **Java:** 21 or newer  
-- **[Sodium](https://github.com/CaffeineMC/sodium-fabric):** 0.6.13 or newer  
+- **Minecraft:** 1.20+
+- **Loader:** [Fabric](https://fabricmc.net/use/) (0.15 or newer)
+- **Java:** 21 or newer
+- **[Sodium](https://github.com/CaffeineMC/sodium-fabric):** 0.5.13 or newer
 - **Launcher:** [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher) with MobileGlues or LTW
 
 
