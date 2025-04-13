@@ -19,7 +19,7 @@ This doesn’t magically make [Sodium](https://github.com/CaffeineMC/sodium-fabr
 
 
 ## Installation
-1. Download the latest release of **Podium** from [Modrinth](https://modrinth.com/mod/podium) or [Curseforge](https://curseforge.com/minecraft/mc-mods/podium-pojav-x-sodium).
+1. Download the latest release of **Podium** from [Modrinth](https://modrinth.com/mod/podium) or [Curseforge](https://curseforge.com/minecraft/mc-mods/podium-sodium).
 2. Make sure you have the [Fabric Loader](https://fabricmc.net/use/) installed on your [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher) instance.
 3. Put the `podium-x.y.z.jar` into your `mods` folder alongside [Sodium](https://github.com/CaffeineMC/sodium-fabric).
 4. Use a supported renderer like **LTW** or **MobileGlues**.
