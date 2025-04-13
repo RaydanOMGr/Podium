@@ -1,7 +1,7 @@
 ![icon](https://raw.githubusercontent.com/RaydanOMGr/Podium/refs/heads/master/src/main/resources/assets/podium/icon.png)
 
 # Podium  
-> **Po**jav + So**dium** = Podium
+> **Po**jav + So**dium** = **Podium**
 
 A tiny Mixin mod that disables [Sodium](https://github.com/CaffeineMC/sodium-fabric)'s [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher) check.
 
