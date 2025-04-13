@@ -9,7 +9,7 @@ import net.caffeinemc.mods.sodium.client.compatibility.checks.PostLaunchChecks;
 
 @Mixin(PostLaunchChecks.class)
 public class PostLaunchChecksMixin {
-	@Inject(at = @At("HEAD"), method = "isUsingPojavLauncher()V", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "isUsingPojavLauncher()Z", cancellable = true)
 	private void isUsingPojavMixin(CallbackInfoReturnable<Boolean> cir) {
     cir.setReturnValue(false);
 	}
