@@ -144,7 +144,7 @@ dependencies {
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
     // compileOnly "mezz.jei:jei-${mc_version}-forge-api:${jei_version}"
     // runtimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
-    implementation "maven.modrinth:sodium:mc1.21.5-0.6.13-neoforge"
+    implementation "maven.modrinth:sodium:mc1.21.4-0.6.13-neoforge"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
@@ -163,8 +163,8 @@ dependencies {
 
     // should prob not do it here lol
     extractJarJarDependency(
-            "maven.modrinth:sodium:mc1.21.5-0.6.13-neoforge",
-            "net.caffeinemc.sodium-neoforge-0.6.13+mc1.21.5-service.jar"
+            "maven.modrinth:sodium:mc1.21.4-0.6.13-neoforge",
+            "net.caffeinemc.sodium-neoforge-0.6.13+mc1.21.4-service.jar"
     )
     implementation fileTree(dir: "${buildDir}/extracted-jarjar-cache", include: "*.jar")
 }

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PreLaunchChecks.class)
 public abstract class PreLaunchChecksMixin {
-    @Shadow
+    @Shadow(remap = false)
     private static boolean isUsingPrismLauncher() { return false; }
 
     // removing this check may cause issues outside pojav
