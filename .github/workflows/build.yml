@@ -4,7 +4,7 @@
 # against bad commits.
 
 name: build
-on: [pull_request, push]
+on: [pull_request, push, workflow_dispatch]
 
 jobs:
   build:
@@ -12,19 +12,30 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+        
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
+        
       - name: setup jdk
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
+          
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+        
       - name: build
         run: ./gradlew build
-      - name: capture build artifacts
+        
+      - name: capture fabric build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Artifacts
-          path: build/libs/
+          name: Fabric-Artifacts
+          path: fabric/build/libs/
+
+      - name: capture neoforge build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: NeoForge-Artifacts
+          path: neoforge/build/libs/
