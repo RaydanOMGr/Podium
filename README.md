@@ -1,4 +1,4 @@
-![icon](https://raw.githubusercontent.com/RaydanOMGr/Podium/refs/heads/master/src/main/resources/assets/podium/icon.png)
+![icon](https://raw.githubusercontent.com/RaydanOMGr/Podium/refs/heads/master/fabric/src/main/resources/assets/podium/icon.png)
 
 # Podium  
 > **Po**jav + So**dium** = **Podium**
