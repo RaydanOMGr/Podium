@@ -3,11 +3,7 @@
   "minVersion": "0.8",
   "package": "me.andreasmelone.podium.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "podium.refmap.json",
-  "client": [
-    "PostLaunchChecksMixin",
-    "PreLaunchChecksMixin"
-  ],
+  "plugin": "me.andreasmelone.podium.PodiumMixinPlugin",
   "injectors": {
     "defaultRequire": 1
   }

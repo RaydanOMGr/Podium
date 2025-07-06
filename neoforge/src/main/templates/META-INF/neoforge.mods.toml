@@ -72,6 +72,13 @@ versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="CLIENT"
 
+[[dependencies."${mod_id}"]]
+modId = "sodium"
+type = "required"
+versionRange = "[0.5.13,)"
+ordering = "BEFORE"
+side = "CLIENT"
+
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.
