@@ -56,7 +56,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "${mod_id}-${project.name}"
 }
 
 java {

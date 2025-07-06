@@ -7,7 +7,7 @@ version = project.mod_version
 group = project.mod_group_id
 
 base {
-    archivesName = project.mod_id
+    archivesName = "${mod_id}-${project.name}"
 }
 
 repositories {
