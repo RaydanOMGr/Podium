@@ -68,10 +68,10 @@ neoForge {
     // Specify the version of NeoForge to use.
     version = project.neo_version
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
+//    parchment {
+//        mappingsVersion = project.parchment_mappings_version
+//        minecraftVersion = project.parchment_minecraft_version
+//    }
 
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers.add('src/main/resources/META-INF/accesstransformer.cfg')
@@ -147,7 +147,7 @@ dependencies {
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
     // compileOnly "mezz.jei:jei-${mc_version}-forge-api:${jei_version}"
     // runtimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
-    implementation "maven.modrinth:sodium:mc1.21.4-0.6.13-neoforge"
+    implementation "maven.modrinth:sodium:mc${project.minecraft_version}-${project.sodium_version}-neoforge"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
@@ -166,8 +166,8 @@ dependencies {
 
     // should prob not do it here lol
     extractJarJarDependency(
-            "maven.modrinth:sodium:mc1.21.4-0.6.13-neoforge",
-            "net.caffeinemc.sodium-neoforge-0.6.13+mc1.21.4-service.jar"
+            "maven.modrinth:sodium:mc${project.minecraft_version}-${project.sodium_version}-neoforge",
+            "net.caffeinemc.sodium-neoforge-${project.sodium_version}+mc${project.minecraft_version}-mod.jar"
     )
     implementation fileTree(dir: "${buildDir}/extracted-jarjar-cache", include: "*.jar")
 }

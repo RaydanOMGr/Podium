@@ -1,6 +1,7 @@
 package me.andreasmelone.podium;
 
 import com.google.gson.Gson;
+import net.neoforged.fml.loading.FMLPaths;
 import sun.misc.Unsafe;
 
 import java.io.ByteArrayInputStream;
@@ -12,6 +13,8 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.ProtectionDomain;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.jar.JarEntry;
@@ -22,9 +25,9 @@ public class Util {
     public static final Gson GSON = new Gson();
 
     public static Optional<byte[]> tryFindClass(String className) {
-        File modsDir = new File("mods");
-        File[] files = modsDir.listFiles();
-        if(files == null) return Optional.empty();
+        File modsDir = FMLPaths.MODSDIR.get().toFile();
+        List<File> files = new ArrayList<>(Arrays.stream(Optional.ofNullable(modsDir.listFiles()).orElse(new File[0])).toList());
+        files.addAll(listClasspathEntries());
 
         for (File mod : files) {
             if(!mod.getName().endsWith(".jar")) continue;
@@ -85,7 +88,9 @@ public class Util {
     // ClassLoader#defineClass is unaccessible due to the module system, and we need to register the class
     // on a specific ClassLoader which MethodHandles.Lookup does not let us do
     // https://stackoverflow.com/questions/55918972/unable-to-find-method-sun-misc-unsafe-defineclass
-    public static Class<?> defineClass(ClassLoader loader, String className, byte[] bytecode) {
+    // TODO find a better way to do this
+    @SuppressWarnings("removal")
+    public static Class<?> defineClass(ClassLoader loader, String className, byte[] bytecode, ProtectionDomain protectionDomain) {
         try {
             Field f = Unsafe.class.getDeclaredField("theUnsafe"),
                     f1 = Unsafe.class.getDeclaredField("theUnsafe");
@@ -105,12 +110,23 @@ public class Util {
 
             return (Class<?>) defineClass.invoke(internalUnsafe,
                     className, bytecode, 0, bytecode.length,
-                    loader, null);
+                    loader, protectionDomain);
         } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             System.out.println("[Podium] Unable to define class " + className);
             e.printStackTrace();
             return null;
         }
+    }
+
+    private static List<File> listClasspathEntries() {
+        var classPathEntries = System.getProperty("java.class.path").split(File.pathSeparator);
+        var result = new ArrayList<File>(classPathEntries.length);
+        for (var classPathEntry : classPathEntries) {
+            var file = new File(classPathEntry);
+            result.add(file);
+        }
+
+        return result;
     }
 
     static class MetadataJars {

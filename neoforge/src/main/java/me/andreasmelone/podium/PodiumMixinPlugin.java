@@ -2,7 +2,7 @@ package me.andreasmelone.podium;
 
 import me.andreasmelone.podium.transformer.PostLaunchChecksTransformer;
 import me.andreasmelone.podium.transformer.PreLaunchChecksTransformer;
-import net.caffeinemc.mods.sodium.client.compatibility.environment.OsUtils;
+import net.caffeinemc.mods.sodium.service.SodiumWorkarounds;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -18,7 +18,7 @@ public class PodiumMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage) {
         // nobody would ever want to mixin into this class, right?
         // well, not like they can do that anyway...
-        ClassLoader loader = OsUtils.class.getClassLoader();
+        ClassLoader loader = SodiumWorkarounds.class.getClassLoader();
 
         System.out.println("[Podium] Trying to load and transform " + PreLaunchChecksTransformer.CLASSNAME_DOTTED);
         Util.tryFindClass(PreLaunchChecksTransformer.CLASSNAME_SLASHED).ifPresentOrElse(
@@ -27,9 +27,10 @@ public class PodiumMixinPlugin implements IMixinConfigPlugin {
                         Util.defineClass(
                                 loader,
                                 PreLaunchChecksTransformer.CLASSNAME_DOTTED,
-                                new PreLaunchChecksTransformer().transform(bytes)
+                                new PreLaunchChecksTransformer().transform(bytes),
+                                SodiumWorkarounds.class.getProtectionDomain()
                         );
-                    } catch (Exception e) {
+                    } catch (Throwable e) {
                         System.out.println("[Podium] Was unable to define class " + PreLaunchChecksTransformer.CLASSNAME_DOTTED);
                         e.printStackTrace();
                     }
@@ -44,9 +45,10 @@ public class PodiumMixinPlugin implements IMixinConfigPlugin {
                         Util.defineClass(
                                 loader,
                                 PostLaunchChecksTransformer.CLASSNAME_DOTTED,
-                                new PostLaunchChecksTransformer().transform(bytes)
+                                new PostLaunchChecksTransformer().transform(bytes),
+                                SodiumWorkarounds.class.getProtectionDomain()
                         );
-                    } catch (Exception e) {
+                    } catch (Throwable e) {
                         System.out.println("[Podium] Was unable to define class " + PostLaunchChecksTransformer.CLASSNAME_DOTTED);
                         e.printStackTrace();
                     }
@@ -62,7 +64,7 @@ public class PodiumMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return false;
+        return true;
     }
 
     @Override
